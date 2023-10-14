@@ -124,7 +124,7 @@
 <p><code>if (strpos($query, &#39;_&#39;) !== False)    die(&quot;nononono!&quot;);</code> strpos函数的意思是，从query中查找字符 _  ，如果没有找到，则返回False，因此这个部分过滤了 _ </p>
 <p>由于后面要给f_name赋值，可以用  .   来代替  _  即 f.name</p>
 <p><code>if (preg_match(&#39;/&lt;\?ph.|flag/i&#39;, $content) !== 0)</code>接下来看到正则表达式的位置，这个位置代表了过滤了content中的&lt;?ph 和flag字符，可以用&lt;?= 来代替&lt;?php。&lt;?= 是&lt;?=php echo 的简写</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">if (strlen($content) &gt; 22)&#123;die(&#x27;why are you so LONG?&#x27;);&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="title function_ invoke__">strlen</span>(<span class="variable">$content</span>) &gt; <span class="number">22</span>)&#123;<span class="keyword">die</span>(<span class="string">&#x27;why are you so LONG?&#x27;</span>);&#125;</span><br></pre></td></tr></table></figure>
 
 <p>使得我们的content长度不能超过22</p>
 <p><code>file_put_contents($path, $content)</code>file_put_contents表示写入函数，path表示写入的文件名称，content表示写入文件的内容</p>
