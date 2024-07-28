@@ -11,7 +11,7 @@
         name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1"
       />
-      <title>thm |  sunset</title>
+      <title>thm-Daily Bugle |  sunset</title>
   <meta name="generator" content="hexo-theme-ayer">
       
       <link rel="shortcut icon" href="/favicon.ico" />
@@ -55,112 +55,203 @@
       
     <main class="content on">
       <section class="outer">
-  
-  
-  <article class="articles">
+  <article
+  id="post-thm-Daily-Bugle"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
     
-    
-    <h1 class="page-type-title">thm</h1>
-    
-    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  thm-Daily Bugle
+</h1>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2024/07/28/thm-Daily-Bugle/" class="article-date">
+  <time datetime="2024-07-28T05:41:46.000Z" itemprop="datePublished">2024-07-28</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/thm/">thm</a>
+  </div>
   
-  
-  
-  
-  
-  
-  <div class="archives-wrap">
-    <div class="archive-year-wrap">
-      <a href="/archives/2024" class="archive-year">2024</a>
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> Word count:</span>
+            <span class="post-count">342</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> Reading time≈</span>
+            <span class="post-count">1 min</span>
+        </span>
+    </span>
+</div>
+ 
     </div>
-    <div class="archives">
       
-      <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2024/07/28/thm-Daily-Bugle/" class="archive-article-date">
-  <time datetime="2024-07-28T05:41:46.000Z" itemprop="datePublished">07/28</time>
-</a>
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
        
-<h2 itemprop="name">
-  <a class="archive-article-title" href="/2024/07/28/thm-Daily-Bugle/"
-    >thm-Daily Bugle</a> 
-</h2>
+  <h1 id="thm-Daily-Bugle-wp"><a href="#thm-Daily-Bugle-wp" class="headerlink" title="thm-Daily Bugle wp"></a>thm-Daily Bugle wp</h1><p>找了半天没找到这个CMS的版本，最后直接搜索</p>
+<p><img src="https://sunsetdream.oss-cn-wuhan-lr.aliyuncs.com/img/image-20240728134458110.png" alt="image-20240728134458110"></p>
+<p>得到个路径</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/language/en-GB/en-GB.xml</span><br></pre></td></tr></table></figure>
+
+<p>得到版本3.7.0</p>
+<p><img src="https://sunsetdream.oss-cn-wuhan-lr.aliyuncs.com/img/image-20240728134556865.png" alt="image-20240728134556865"></p>
+<p>找到脚本<a target="_blank" rel="noopener" href="https://www.exploit-db.com/exploits/44227">https://www.exploit-db.com/exploits/44227</a></p>
+<p><img src="https://sunsetdream.oss-cn-wuhan-lr.aliyuncs.com/img/image-20240728163044634.png" alt="image-20240728163044634"></p>
+<p>得到用户名为jonah</p>
+<p>得到密码的hash值，然后爆破得到密码</p>
+<p><img src="https://sunsetdream.oss-cn-wuhan-lr.aliyuncs.com/img/image-20240728162941108.png" alt="image-20240728162941108"></p>
+<p>得到密码为spiderman123</p>
+<p>然后登录站点，通过看每一个功能发现这个位置能够修改文件</p>
+<p><img src="https://sunsetdream.oss-cn-wuhan-lr.aliyuncs.com/img/image-20240728164525919.png" alt="image-20240728164525919"></p>
+<p>这里我选择了第一个</p>
+<p><img src="https://sunsetdream.oss-cn-wuhan-lr.aliyuncs.com/img/image-20240728164654298.png" alt="image-20240728164654298"></p>
+<p>随意选择一个文件去修改，我选择的是error.php</p>
+<p><img src="https://sunsetdream.oss-cn-wuhan-lr.aliyuncs.com/img/image-20240728164637044.png" alt="image-20240728164637044"></p>
+<p>修改后，在本地监听6666端口，然后访问 <a target="_blank" rel="noopener" href="http://10.10.146.205/templates/beez3/error.php">http://10.10.146.205/templates/beez3/error.php</a></p>
+<p>即可拿到shell</p>
+<p><img src="https://sunsetdream.oss-cn-wuhan-lr.aliyuncs.com/img/image-20240728164900249.png" alt="image-20240728164900249"></p>
+<p>发现我们拿到的是服务用户的shell，这导致我们的权限非常低</p>
+<p>来到home页面，发现有一个用户jjameson，但是很遗憾，无法进入该文件夹</p>
+<p><img src="https://sunsetdream.oss-cn-wuhan-lr.aliyuncs.com/img/image-20240728164938346.png" alt="image-20240728164938346"></p>
+<p>尝试其他的提权方式无果，来到/var/www/html目录，发现有个configuration.php</p>
+<p>泄露了重要信息，发现了数据库的用户和密码nv5uz9r3ZEDzVjNu</p>
+<p><img src="https://sunsetdream.oss-cn-wuhan-lr.aliyuncs.com/img/image-20240728165337793.png" alt="image-20240728165337793"></p>
+<p>尝试切换成root用户发现密码不正确，随后又尝试切换成jjameson，成功</p>
+<p>开始进一步提权</p>
+<p>查看sudo -l，看看有没有给我们设置命令</p>
+<p><img src="https://sunsetdream.oss-cn-wuhan-lr.aliyuncs.com/img/image-20240728163614202.png" alt="image-20240728163614202"></p>
+<p>发现有一个yum命令，通过该网站去查找提权方式</p>
+<p><a target="_blank" rel="noopener" href="https://gtfobins.github.io/">https://gtfobins.github.io/</a></p>
+<p><img src="https://sunsetdream.oss-cn-wuhan-lr.aliyuncs.com/img/image-20240728163742070.png" alt="image-20240728163742070"></p>
+<p>根据这个执行即可</p>
+<p>提权成功</p>
+<p><img src="https://sunsetdream.oss-cn-wuhan-lr.aliyuncs.com/img/image-20240728163521905.png" alt="image-20240728163521905"></p>
  
-
-    </header>
-    
+      <!-- reward -->
       
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/thm/">thm</a>
-  </div>
-
-    
-    
-  </div>
-</article>
-      
-  
-  
-      <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2024/07/27/thm-Skynet/" class="archive-article-date">
-  <time datetime="2024-07-27T14:49:22.000Z" itemprop="datePublished">07/27</time>
-</a>
-       
-<h2 itemprop="name">
-  <a class="archive-article-title" href="/2024/07/27/thm-Skynet/"
-    >thm-Skynet</a> 
-</h2>
- 
-
-    </header>
-    
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/thm/">thm</a>
-  </div>
-
-    
-    
-  </div>
-</article>
-      
-  
-  
-      <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2024/07/16/thm-Steel_Mountain/" class="archive-article-date">
-  <time datetime="2024-07-16T11:10:48.000Z" itemprop="datePublished">07/16</time>
-</a>
-       
-<h2 itemprop="name">
-  <a class="archive-article-title" href="/2024/07/16/thm-Steel_Mountain/"
-    >thm-Steel Mountain</a> 
-</h2>
- 
-
-    </header>
-    
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/thm/">thm</a>
-  </div>
-
-    
-    
-  </div>
-</article>
-      
+      <div id="reword-out">
+        <div id="reward-btn">
+          Donate
+        </div>
+      </div>
       
     </div>
+    
+
+    <!-- copyright -->
+    
+    <div class="declare">
+      <ul class="post-copyright">
+        <li>
+          <i class="ri-copyright-line"></i>
+          <strong>Copyright： </strong>
+          
+          Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source.
+          
+        </li>
+      </ul>
+    </div>
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2024/07/28/thm-Daily-Bugle/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+    </footer>
   </div>
-  
-  
+
+   
+  <nav class="article-nav">
+    
+    
+      <a href="/2024/07/27/thm-Skynet/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">thm-Skynet</div>
+      </a>
+    
+  </nav>
 
   
+   
+  
+   
+    <script src="https://cdn.staticfile.org/twikoo/1.4.18/twikoo.all.min.js"></script>
+    <div id="twikoo" class="twikoo"></div>
+    <script>
+        twikoo.init({
+            envId: ""
+        })
+    </script>
+ 
+</article>
+
 </section>
       <footer class="footer">
   <div class="outer">
@@ -309,6 +400,22 @@
 <script src="/js/lazyload.min.js"></script>
 
 <!-- Tocbot -->
+ 
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: ".tocbot",
+    contentSelector: ".article-entry",
+    headingSelector: "h1, h2, h3, h4, h5, h6",
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: "main",
+    positionFixedSelector: ".tocbot",
+    positionFixedClass: "is-position-fixed",
+    fixedSidebarOffset: "auto",
+  });
+</script>
 
 <script src="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.js"></script>
 <link
